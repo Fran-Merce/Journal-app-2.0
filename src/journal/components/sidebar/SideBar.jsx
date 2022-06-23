@@ -1,7 +1,9 @@
 import { Box, Divider, Drawer, List, Toolbar, Typography } from "@mui/material";
+import { useSelector } from "react-redux";
 import { SideBarItem } from "./SideBarItem";
 
 export const SideBar = ({ drawerWidth = 280 }) => {
+  const { displayName } = useSelector( state => state.auth );
   return (
     <Box
       component="aside"
@@ -16,8 +18,8 @@ export const SideBar = ({ drawerWidth = 280 }) => {
         }}
       >
         <Toolbar>
-          <Typography variant="h6" component="p" noWrap>
-            Fran Skykru
+          <Typography variant="h6" component="p" noWrap sx={{textTransform:'capitalize'}}>
+            {displayName}
           </Typography>
         </Toolbar>
         <Divider variant="fullWidth" />

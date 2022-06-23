@@ -11,5 +11,8 @@ export const purpleTheme = createTheme({
     error: {
       main: red.A400,
     },
+    loader: {
+      main: "#fff",
+    },
   },
 });

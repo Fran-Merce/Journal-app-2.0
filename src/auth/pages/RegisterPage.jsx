@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { Grid, TextField, Button, Link, Alert } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
 import { AuthLayout } from "../layout/AuthLayout";
-import { useForm } from "../../../hooks/useForm";
-import { startCreatingUserEmailPassword } from "../../../store/auth/thunks";
+import { useForm } from "../../hooks/useForm";
+import { startCreatingUserEmailPassword } from "../../store/auth/thunks";
 
 const formData = {
   email: "",
@@ -25,13 +25,11 @@ const formValidations = {
 
 export const RegisterPage = () => {
   const { status, errorMessage } = useSelector(state => state.auth);
+  const dispatch = useDispatch();
+  const [formSubmitted, setFormSubmitted] = useState(false);
   const isCheckingAuth = useMemo(
     () => status === "checking-credentials"[status]
   );
-
-  const dispatch = useDispatch();
-  const [formSubmitted, setFormSubmitted] = useState(false);
-
   const {
     displayName,
     email,
