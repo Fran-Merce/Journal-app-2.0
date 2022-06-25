@@ -32,6 +32,7 @@ export const startLoginEmailPassword = (email, password) => async dispatch => {
   dispatch(checkingCredentials());
   const { ok, uid, errorMessage, photoURL, displayName } =
     await loginEmailPassword(email, password);
+
   if (!ok) return dispatch(loguot({ errorMessage }));
   dispatch(login({ uid, ok, photoURL, displayName }));
 };

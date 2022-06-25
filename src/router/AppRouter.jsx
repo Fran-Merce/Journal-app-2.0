@@ -5,15 +5,16 @@ import { JournalRoutes } from "../journal/routes/JournalRoutes";
 import { CheckingAuth } from "../ui";
 
 export const AppRouter = () => {
-  const  status  = useCheckingAuth();
-  if (status === "checking-credentials") return <CheckingAuth />;
+  const status = useCheckingAuth();
+  if (status === "checking") return <CheckingAuth />;
 
   return (
     <Routes>
-      {status === "authenticated" 
-        ? (<Route path="*" element={<JournalRoutes />} />) 
-        : (<Route path="/auth/*" element={<AuthRoutes />} />)
-      }
+      {status === "authenticated" ? (
+        <Route path="*" element={<JournalRoutes />} />
+      ) : (
+        <Route path="/auth/*" element={<AuthRoutes />} />
+      )}
       <Route path="/*" element={<Navigate to="/auth/login" />} />
     </Routes>
   );

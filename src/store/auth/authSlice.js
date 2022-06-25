@@ -1,9 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+// !SE PUEDE MUTAR EL ESTADO DIRECTAMENTE YA QUE REDUX TOOLKIT POR DETRAS NOS ESTA GENERANDO UN NUEVO ESTADO
+// !NO SE CONSIDERA UNA MALA PRACTICA MUTAR EL ESTADO DIRECTAMENTE GRACIAS AL REDUX TOOL KIT
+
 export const authSlice = createSlice({
   name: "auth",
   initialState: {
-    status: "checking-credentials",
+    status: "checking",
     uid: null,
     email: null,
     displayName: null,
@@ -29,7 +32,7 @@ export const authSlice = createSlice({
       state.photoURL = null;
     },
     checkingCredentials: state => {
-      state.status = "checking-credentials";
+      state.status = "checking";
       state.errorMessage = null;
     },
   },

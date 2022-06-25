@@ -3,7 +3,8 @@ import { useSelector } from "react-redux";
 import { SideBarItem } from "./SideBarItem";
 
 export const SideBar = ({ drawerWidth = 280 }) => {
-  const { displayName } = useSelector( state => state.auth );
+  const { displayName } = useSelector(state => state.auth);
+  const { notes } = useSelector(state => state.journal);
   return (
     <Box
       component="aside"
@@ -18,17 +19,20 @@ export const SideBar = ({ drawerWidth = 280 }) => {
         }}
       >
         <Toolbar>
-          <Typography variant="h6" component="p" noWrap sx={{textTransform:'capitalize'}}>
+          <Typography
+            variant="h6"
+            component="p"
+            noWrap
+            sx={{ textTransform: "capitalize" }}
+          >
             {displayName}
           </Typography>
         </Toolbar>
         <Divider variant="fullWidth" />
         <List>
-          {["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio"].map(
-            text => (
-              <SideBarItem key={text} text={text} />
-            )
-          )}
+          {notes.map(note => (
+            <SideBarItem key={note.id} note={note} />
+          ))}
         </List>
       </Drawer>
     </Box>

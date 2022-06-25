@@ -14,31 +14,34 @@ import {
   Alert,
 } from "@mui/material";
 
+const formData = {
+  email: "",
+  password: "",
+};
+
 export const LoginPage = () => {
   const { status, errorMessage } = useSelector(state => state.auth);
   const dispatch = useDispatch();
-  const { email, password, onInputChange } = useForm({
-    email: "",
-    password: "",
-  });
-  const isCheckingAuth = useMemo(
-    () => status === "checking-credentials"[status]
-  );
+  const { email, password, onInputChange } = useForm(formData);
+
+  const isCheckingAuth = useMemo(() => status === "checking"[status]);
+
   const onSubmit = e => {
     e.preventDefault();
-
+    if (email.length === 0 || password.length === 0) return;
     if (isCheckingAuth) return;
     dispatch(startLoginEmailPassword(email, password));
   };
+
   const onGoogleSingIn = () => dispatch(startGoogleSingIn());
 
-  const isAutenticated = useMemo(
-    () => status === "checking-credentials",
-    [status]
-  );
+  const isAutenticated = useMemo(() => status === "checking", [status]);
   return (
     <AuthLayout title="Login">
-      <form onSubmit={onSubmit}>
+      <form
+        onSubmit={onSubmit}
+        className="animate__animated animate__fadeIn animate__faster"
+      >
         <Grid sx={{ mt: 2 }} container>
           <Grid item xs={12} sx={{ mb: 2 }}>
             <TextField
