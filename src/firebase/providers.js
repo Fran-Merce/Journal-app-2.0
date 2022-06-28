@@ -74,12 +74,11 @@ export const loginEmailPassword = async (email, password) => {
       displayName,
     };
   } catch (error) {
-    console.log(error);
+    error;
     return { ok: false, errorMessage: error.message };
   }
 };
 
-
-export const logoutFirebase= async ()=>{
-  return await firebaseAuth.signOut()
-}
+export const logoutFirebase = async () => {
+  return await firebaseAuth.signOut();
+};

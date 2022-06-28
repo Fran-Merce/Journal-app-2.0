@@ -9,6 +9,7 @@ import { startNewNote } from "../../store/journal";
 export const JournalPage = () => {
   const dispatch = useDispatch();
   const { isSaving, activeNote: note } = useSelector(state => state.journal);
+
   const onClickNewNote = e => {
     e.preventDefault();
     dispatch(startNewNote());
@@ -36,4 +37,3 @@ export const JournalPage = () => {
     </JournalLayout>
   );
 };
-``;

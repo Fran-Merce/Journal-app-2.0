@@ -5,6 +5,7 @@ import { SideBarItem } from "./SideBarItem";
 export const SideBar = ({ drawerWidth = 280 }) => {
   const { displayName } = useSelector(state => state.auth);
   const { notes } = useSelector(state => state.journal);
+
   return (
     <Box
       component="aside"
@@ -30,9 +31,12 @@ export const SideBar = ({ drawerWidth = 280 }) => {
         </Toolbar>
         <Divider variant="fullWidth" />
         <List>
-          {notes.map(note => (
-            <SideBarItem key={note.id} note={note} />
-          ))}
+          {notes.map(
+            note =>
+              note.title.trim().length > 0 && (
+                <SideBarItem key={note.id} note={note} />
+              )
+          )}
         </List>
       </Drawer>
     </Box>

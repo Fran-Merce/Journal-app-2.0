@@ -9,7 +9,8 @@ const JournalLayout = ({ children }) => {
     <Box sx={{ display: "flex" }} className="animate__animated animate__fadeIn animate__faster">
       <Navbar drawerWidth={drawerWidth} />
       <SideBar drawerWidth={drawerWidth} openDrawer={open} />
-      <Box component="main" sx={{ flexGrow: 1 }}>
+      <Box   alignItems="center"
+        justifyContent="center" component="main" sx={{ flexGrow: 1 }}>
         <Toolbar />
         {children}
       </Box>

@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import {createSlice} from "@reduxjs/toolkit";
 
 // !SE PUEDE MUTAR EL ESTADO DIRECTAMENTE YA QUE REDUX TOOLKIT POR DETRAS NOS ESTA GENERANDO UN NUEVO ESTADO
 // !NO SE CONSIDERA UNA MALA PRACTICA MUTAR EL ESTADO DIRECTAMENTE GRACIAS AL REDUX TOOL KIT
@@ -23,7 +23,7 @@ export const authSlice = createSlice({
       state.status = "authenticated";
       state.errorMessage = null;
     },
-    loguot: (state, { payload }) => {
+    logout: (state, { payload }) => {
       state.status = "not-authenticated";
       state.errorMessage = payload?.errorMessage;
       state.uid = null;
@@ -37,4 +37,4 @@ export const authSlice = createSlice({
     },
   },
 });
-export const { login, loguot, checkingCredentials } = authSlice.actions;
+export const { login, logout, checkingCredentials } = authSlice.actions;
