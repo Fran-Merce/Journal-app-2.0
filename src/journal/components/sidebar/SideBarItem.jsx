@@ -1,13 +1,12 @@
 import { useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setActiveNote, startDeletingNote } from '../../../store/journal';
-import { TurnedInNot } from '@mui/icons-material';
+import { setActiveNote } from '../../../store/journal';
+import ClassOutlinedIcon from '@mui/icons-material/ClassOutlined';
 import {
   Divider,
   Grid,
   ListItem,
   ListItemButton,
-  ListItemIcon,
   ListItemText,
 } from '@mui/material';
 import { textFormatterLenght } from '../../../helpers';
@@ -24,10 +23,7 @@ export const SideBarItem = ({ note }) => {
   const setActive = () => {
     if (activeNote?.id === note?.id) return;
     if (activeNote?.title.trim().length === 0) {
-      Swal.fire({
-        title: 'Tienes una nota sin guardar',
-        icon: 'warning',
-      });
+      Swal.fire('Tienes una nota sin guardar', '', 'warning');
       return;
     }
     dispatch(setActiveNote(note));
@@ -37,13 +33,13 @@ export const SideBarItem = ({ note }) => {
     <>
       <ListItem disablePadding>
         <ListItemButton onClick={setActive}>
-          <ListItemIcon>
-            <TurnedInNot
-              sx={{
-                color: `${activeNote?.id === note?.id ? '#fdb760' : '#000'}`,
-              }}
-            />
-          </ListItemIcon>
+          <ClassOutlinedIcon
+            sx={{
+              color: `${activeNote?.id === note?.id ? '#fdb760' : '#000'}`,
+              mr: 3,
+            }}
+          />
+
           <Grid container direction='column'>
             <ListItemText
               primary={newTitle}

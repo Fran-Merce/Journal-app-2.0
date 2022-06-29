@@ -66,19 +66,17 @@ export const startUploadingFiles = (files = []) => {
     const filesUrl = await Promise.all(filesPromises).then(files =>
       files.map(file => file.url)
     );
-    filesUrl;
+
     dispatch(setPhotosToActiveNote(filesUrl));
   };
 };
 
 export const startDeletingNote = () => {
   return async (dispatch, getState) => {
-    console.log('hola');
     const { uid } = getState().auth;
     const { activeNote } = getState().journal;
     const docRef = doc(firebaseDB, `${uid}/journal/notes/${activeNote.id}`);
     await deleteDoc(docRef);
-
     dispatch(deleteNoteById(activeNote.id));
   };
 };

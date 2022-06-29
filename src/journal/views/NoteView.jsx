@@ -15,7 +15,6 @@ export const NoteView = () => {
     isSaving,
     activeNote,
     fileInputRef,
-    activeNoteOnBlur,
   } = useNotes();
 
   return (
@@ -56,7 +55,6 @@ export const NoteView = () => {
 
       <Grid container sx={{ mt: 2 }}>
         <TextField
-          onBlur={activeNoteOnBlur}
           type='text'
           variant='filled'
           fullWidth

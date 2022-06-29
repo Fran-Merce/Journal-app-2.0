@@ -4,7 +4,7 @@ import JournalLayout from '../layout/JournalLayout';
 import { NothingSelectedView, NoteView } from '../views';
 import { AddOutlined } from '@mui/icons-material';
 import { useDispatch, useSelector } from 'react-redux/es/exports';
-import { startNewNote, startSaveNote } from '../../store/journal';
+import { startNewNote } from '../../store/journal';
 import Swal from 'sweetalert2';
 
 export const JournalPage = () => {

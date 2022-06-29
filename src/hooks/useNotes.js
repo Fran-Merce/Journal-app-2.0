@@ -4,7 +4,6 @@ import Swal from 'sweetalert2';
 import { dateFormatted } from '../helpers';
 import { useForm } from './useForm';
 import {
-  localUpdateNote,
   setActiveNote,
   startDeletingNote,
   startSaveNote,
@@ -29,10 +28,6 @@ export const useNotes = () => {
   // Dispatch Functions
 
   const onDeleteNote = () => dispatch(startDeletingNote());
-  const activeNoteOnBlur = () => {
-    if (formState.title === '') return;
-    dispatch(localUpdateNote(formState));
-  };
 
   const onSaveNote = () => {
     if (formState.title.trim().length === 0)
@@ -61,6 +56,5 @@ export const useNotes = () => {
     isSaving,
     activeNote,
     fileInputRef,
-    activeNoteOnBlur,
   };
 };

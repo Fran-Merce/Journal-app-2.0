@@ -52,11 +52,6 @@ export const journalSlice = createSlice({
       state.notes = state.notes.filter(note => note.id !== payload);
       state.activeNote = null;
     },
-    localUpdateNote: (state, { payload }) => {
-      state.notes = state.notes.map(note =>
-        note.id === payload.id ? (note = { ...payload }) : note
-      );
-    },
   },
 });
 export const { reducer } = journalSlice.actions;
@@ -71,5 +66,4 @@ export const {
   setPhotosToActiveNote,
   setSaving,
   updateNote,
-  localUpdateNote,
 } = journalSlice.actions;
