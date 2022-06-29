@@ -1,13 +1,13 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 // !SE PUEDE MUTAR EL ESTADO DIRECTAMENTE YA QUE REDUX TOOLKIT POR DETRAS NOS ESTA GENERANDO UN NUEVO ESTADO
 // !NO SE CONSIDERA UNA MALA PRACTICA MUTAR EL ESTADO DIRECTAMENTE GRACIAS AL REDUX TOOL KIT
 
 export const journalSlice = createSlice({
-  name: "journal",
+  name: 'journal',
   initialState: {
     isSaving: false,
-    messageSaved: "",
+    messageSaved: '',
     notes: [],
     activeNote: null,
   },
@@ -52,6 +52,11 @@ export const journalSlice = createSlice({
       state.notes = state.notes.filter(note => note.id !== payload);
       state.activeNote = null;
     },
+    localUpdateNote: (state, { payload }) => {
+      state.notes = state.notes.map(note =>
+        note.id === payload.id ? (note = { ...payload }) : note
+      );
+    },
   },
 });
 export const { reducer } = journalSlice.actions;
@@ -66,4 +71,5 @@ export const {
   setPhotosToActiveNote,
   setSaving,
   updateNote,
+  localUpdateNote,
 } = journalSlice.actions;
