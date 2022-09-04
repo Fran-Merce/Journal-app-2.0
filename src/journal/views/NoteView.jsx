@@ -23,9 +23,9 @@ export const NoteView = () => {
       sx={{ mb: 1, p: 3 }}
       className='animate__animated animate__fadeIn animate__faster'
     >
-      <Grid container justifyContent='space-between' display>
+      <Grid mt='1.5rem' container justifyContent='space-between' display>
         <Typography fontSize={39} fontWeight='light'>
-          {dateString}{' '}
+          {dateString}
         </Typography>
         <Grid item display='flex' alignItems='center' justifyContent='end'>
           <Grid item>

@@ -9,26 +9,30 @@ import {
 } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { startLogout } from '../../store/auth';
+import { toggleSidebar } from '../../store/sidebar/sidebarSlice';
 
 export const Navbar = ({ drawerWidth = 240 }) => {
   const dispatch = useDispatch();
   const { displayName } = useSelector(state => state.auth);
+
   const onLogout = () => dispatch(startLogout());
+
   return (
-    <AppBar
-      position='fixed'
-      sx={{
-        width: { sm: `calc(100% - ${drawerWidth}px)` },
-        ml: { sm: `${drawerWidth}px` },
-      }}
-    >
-      <Toolbar>
-        <IconButton color='inherit' sx={{ mr: 2, display: { sm: 'none' } }}>
+    <AppBar    >
+      <Toolbar
+
+      >
+        <IconButton
+          onClick={() => dispatch(toggleSidebar())}
+          color='inherit'
+        >
           <MenuOutlined />
         </IconButton>
-        <Grid container justifyContent='space-between' alignItems='center'>
+        <Grid container   justifyContent='space-between' alignItems='center'>
           <Typography
-            sx={{ textTransform: 'capitalize' }}
+            sx={{
+              textTransform: 'capitalize',
+            }}
             variant='h6'
           >{`Bienvenido ${displayName} 😎 `}</Typography>
           <IconButton color='error' onClick={onLogout}>

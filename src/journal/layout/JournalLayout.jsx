@@ -1,21 +1,22 @@
-import { Toolbar } from "@mui/material";
-import { Box } from "@mui/system";
-import { useState } from "react";
-import { Navbar, SideBar } from "../components";
-const drawerWidth = 320;
+import { Toolbar } from '@mui/material';
+import { Box } from '@mui/system';
+import { useState } from 'react';
+import { Navbar, SideBar } from '../components';
+const drawerWidth = 300;
 const JournalLayout = ({ children }) => {
   const [open, setOpen] = useState(false);
   return (
     <Box
-      sx={{ display: "flex" }}
-      className="animate__animated animate__fadeIn animate__faster"
+    
+      sx={{ display: 'flex', minHeight: '100vh'}}
+      className='animate__animated animate__fadeIn animate__faster'
     >
       <Navbar drawerWidth={drawerWidth} />
-      <SideBar drawerWidth={drawerWidth} openDrawer={open} />
+      <SideBar drawerWidth={drawerWidth} isOpen={open} setOpen={setOpen} />
       <Box
-        alignItems="center"
-        justifyContent="center"
-        component="main"
+        alignItems='center'
+        justifyContent='center'
+        component='main'
         sx={{ flexGrow: 1 }}
       >
         <Toolbar />
