@@ -22,7 +22,7 @@ export const SideBar = ({ drawerWidth = 280 }) => {
       sx={{
         width: { sm: drawerWidth },
         flexShrink: { sm: 0 },
-        position: `${open ? 'relative' : 'absolute'}`,
+        position: 'absolute',
         left: '0',
         top: '0',
       }}

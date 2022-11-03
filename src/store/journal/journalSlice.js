@@ -1,7 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-// !SE PUEDE MUTAR EL ESTADO DIRECTAMENTE YA QUE REDUX TOOLKIT POR DETRAS NOS ESTA GENERANDO UN NUEVO ESTADO
-// !NO SE CONSIDERA UNA MALA PRACTICA MUTAR EL ESTADO DIRECTAMENTE GRACIAS AL REDUX TOOL KIT
 
 export const journalSlice = createSlice({
   name: 'journal',
@@ -20,37 +18,56 @@ export const journalSlice = createSlice({
       state.isSaving = false;
       state.messageSaved = null;
     },
-    savingNewNote: state => {
-      state.isSaving = true;
-    },
-    setNotes: (state, { payload }) => {
-      state.notes = payload;
-    },
-    setSaving: state => {
-      state.isSaving = true;
-      state.messageSaved = null;
-    },
+    savingNewNote: state => ({
+      ...state,
+      isSaving: true,
+    }),
+
+    setNotes: (state, { payload }) => ({
+      ...state,
+      notes: payload,
+    }),
+
+    setSaving: state => ({
+      ...state,
+      isSaving: true,
+      messageSaved: null,
+    }),
     updateNote: (state, { payload }) => {
-      state.notes = state.notes.map(note =>
+      const newNotes = state.notes.map(note =>
         note.id === payload.id ? (note = { ...payload }) : note
       );
-      state.messageSaved = `${payload.title}, guardada correctamente`;
-      state.isSaving = false;
+      return {
+        ...state,
+        notes: newNotes,
+        messageSaved: `${payload.title}, guardada correctamente`,
+        isSaving: false,
+      };
     },
-    setPhotosToActiveNote: (state, { payload }) => {
-      state.activeNote.imageUrls = [...state.activeNote.imageUrls, ...payload];
-      state.isSaving = false;
-    },
-    clearNotesLogout: state => {
-      state.notes = [];
-      state.activeNote = null;
-      state.messageSaved = null;
-      state.activeNote = null;
-      state.isSaving = false;
-    },
+    setPhotosToActiveNote: (state, { payload }) => ({
+      ...state,
+      activeNote: {
+        ...state.activeNote,
+        imageUrls: [...state.activeNote.imageUrls, ...payload],
+      },
+      isSaving: false,
+    }),
+
+    clearNotesLogout: state => ({
+      ...state,
+      notes: [],
+      activeNote: null,
+      messageSaved: null,
+      isSaving: false,
+    }),
+
     deleteNoteById: (state, { payload }) => {
-      state.notes = state.notes.filter(note => note.id !== payload);
-      state.activeNote = null;
+      const newNotes = state.notes.filter(note => note.id !== payload);
+      return {
+        ...state,
+        notes: newNotes,
+        activeNote: null,
+      };
     },
   },
 });

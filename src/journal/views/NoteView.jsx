@@ -20,7 +20,8 @@ export const NoteView = () => {
   return (
     <Grid
       container
-      sx={{ mb: 1, p: 3 }}
+      sx={{ mb: 1, p: 3,width:'100vw',maxWidth:'100vw' }}
+
       className='animate__animated animate__fadeIn animate__faster'
     >
       <Grid mt='1.5rem' container justifyContent='space-between' display>

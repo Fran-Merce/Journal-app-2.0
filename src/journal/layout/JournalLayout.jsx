@@ -7,8 +7,7 @@ const JournalLayout = ({ children }) => {
   const [open, setOpen] = useState(false);
   return (
     <Box
-    
-      sx={{ display: 'flex', minHeight: '100vh'}}
+      sx={{ display: 'flex', minHeight: '100vh',maxWidth:'100vw',overflowX:'hidden' }}
       className='animate__animated animate__fadeIn animate__faster'
     >
       <Navbar drawerWidth={drawerWidth} />

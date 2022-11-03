@@ -35,6 +35,7 @@ export const startLoginEmailPassword = (email, password) => async dispatch => {
     await loginEmailPassword(email, password);
 
   if (!ok) return dispatch(logout({ errorMessage }));
+  
   dispatch(login({ uid, ok, photoURL, displayName }));
 };
 

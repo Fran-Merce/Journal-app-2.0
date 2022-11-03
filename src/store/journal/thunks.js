@@ -14,7 +14,6 @@ import {
 } from './journalSlice';
 
 export const startNewNote = () => async (dispatch, getState) => {
-  console.log('ejec');
   dispatch(savingNewNote(true));
 
   const { uid } = getState().auth;
@@ -27,13 +26,17 @@ export const startNewNote = () => async (dispatch, getState) => {
 
   try {
     const newDoc = doc(collection(firebaseDB, `${uid}/journal/notes`));
+
     await setDoc(newDoc, newNote);
+    console.log(await setDoc(newDoc, newNote));
     newNote.id = newDoc.id;
 
     dispatch(addNewEmptyNote(newNote));
     dispatch(setActiveNote(newNote));
+
   } catch (error) {
-    error;
+
+    return error;
   }
 };
 
@@ -61,12 +64,8 @@ export const startSaveNote = () => async (dispatch, getState) => {
 export const startUploadingFiles = (files = []) => {
   return async dispatch => {
     dispatch(setSaving());
-
     const filesPromises = Object.values(files).map(file => fileUpload(file));
-    const filesUrl = await Promise.all(filesPromises).then(files =>
-      files.map(file => file.url)
-    );
-
+    const filesUrl = await Promise.all(filesPromises);
     dispatch(setPhotosToActiveNote(filesUrl));
   };
 };
